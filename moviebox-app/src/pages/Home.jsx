@@ -16,26 +16,35 @@ class Home extends Component {
     }
   }
 
-  renderContent = () => {
+  renderMovies = () => {
     return this.state.dataMovies.map((val, index) => {
       return (
-        <div key={index} className="col-md-3 py-5 pr-3 pl-1">
-          <div className="card px-1">
-            <div className="img-container radius">
-              <img src={val.image} className="card-img-top" alt="..." />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title mx-auto bold">{val.title}</h5>
-              <p className="card-text">{val.sinopsis}</p>
-            </div>
+        <div key={index} className="card px-1">
+          <div className="img-container radius">
+            <img src={val.image} className="card-img-top" alt="..." />
+          </div>
+          <div className="card-body">
+            <h5 className="card-title mx-auto bold">{val.title}</h5>
+            <p className="card-text">{this.renderSynopsis()}</p>
           </div>
         </div>
       );
     });
   };
 
+  renderSynopsis = () => {
+    return this.state.dataMovies.map((val, index) => {
+      var synopsis = val.synopsis.split(". ");
+      return console.log(synopsis);
+    });
+  };
+
   render() {
-    return <div className="mt-2 mx-5 row">{this.renderContent()}</div>;
+    return (
+      <div>
+        <div className="card-deck mt-3 mx-2 px-4">{this.renderMovies()}</div>
+      </div>
+    );
   }
 }
 

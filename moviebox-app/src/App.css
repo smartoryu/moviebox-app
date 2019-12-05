@@ -28,6 +28,36 @@
   color: #61dafb;
 }
 
+.card {
+  padding: 0;
+  border: 1px transparent;
+}
+
+.card-body {
+  padding: 10px 0;
+}
+
+.img-container.radius {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+img {
+  transition: 0.25s ease-in-out;
+}
+
+img.card-img-top:hover {
+  transform: scale(1.1);
+}
+
+.mx-6 {
+  margin: 0 4rem;
+}
+
+.px-6 {
+  padding: 0 4rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
