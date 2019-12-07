@@ -37,6 +37,14 @@
   padding: 10px 0;
 }
 
+.card-text {
+  font-size: 0.75rem !important;
+}
+
+.card-text.jumbotron-text {
+  font-weight: 450 !important;
+}
+
 .img-container.radius {
   border-radius: 10px;
   overflow: hidden;
@@ -56,6 +64,15 @@ img.card-img-top:hover {
 
 .px-6 {
   padding: 0 4rem;
+}
+
+.span {
+  color: red;
+  cursor: pointer;
+}
+
+.span:hover {
+  font-weight: 500;
 }
 
 @keyframes App-logo-spin {
