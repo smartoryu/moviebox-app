@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import { Link } from "react-router-dom";
+
 import { API_URL } from "../support/API_URL";
-// import { connect } from "react-redux";
-// import { storeAPI } from "../redux/action";
-import Carousel from "../components/Carousel";
-import Jumbotron from "../components/Jumbotron";
 
 class Home extends Component {
   state = {
-    dataMovies: [],
-    readmoreSelected: -1
+    dataMovies: []
   };
 
   async componentDidMount() {
@@ -21,49 +18,17 @@ class Home extends Component {
     }
   }
 
-  splitSynopsis = (val = "") => {
-    var synopsis = val.split(". ").filter((val, index) => index < 1);
-    return synopsis;
-  };
-
-  renderSynopsis = (val, index) => {
-    return this.state.readmoreSelected === index ? (
-      <p className="card-text">
-        {val.synopsis}
-        <p>
-          <span
-            className="span"
-            onClick={() => this.setState({ readmoreSelected: -1 })}
-          >
-            (Read less...)
-          </span>
-        </p>
-      </p>
-    ) : (
-      <p className="card-text">
-        {this.splitSynopsis(val.synopsis)}.
-        <p>
-          <span
-            className="span"
-            onClick={() => this.setState({ readmoreSelected: index })}
-          >
-            (Read more...)
-          </span>
-        </p>
-      </p>
-    );
-  };
-
   renderMovies = () => {
     return this.state.dataMovies.map((val, index) => {
       return (
         <div key={index} className="card px-1">
           <div className="img-container radius">
-            <img src={val.image} className="card-img-top" alt="..." />
+            <Link to={`/movie_detail/${val.id}`}>
+              <img src={val.image} className="card-img-top" alt="..." />
+            </Link>
           </div>
           <div className="card-body">
             <h5 className="card-title mx-auto bold">{val.title}</h5>
-            {/* {this.renderSynopsis(val, index)} */}
           </div>
         </div>
       );
@@ -79,7 +44,7 @@ class Home extends Component {
     return (
       <div>
         {/* <Carousel /> */}
-        <Jumbotron dataMovies={this.state.dataMovies} />
+        {/* <Jumbo /> */}
         <div className="mx-6">
           <div className="card-deck mt-5 mx-6 px-5">{this.renderMovies()}</div>
         </div>

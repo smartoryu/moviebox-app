@@ -28,6 +28,11 @@
   color: #61dafb;
 }
 
+.alert-x:hover {
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .card {
   padding: 0;
   border: 1px transparent;
@@ -58,6 +63,44 @@ img.card-img-top:hover {
   transform: scale(1.1);
 }
 
+.landscape0,
+.landscape1,
+.landscape2,
+.landscape3 {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.landscape0 {
+  animation: xfade0 18s 12s infinite;
+}
+
+.landscape1 {
+  animation: xfade1 18s 8s infinite;
+}
+
+.landscape2 {
+  animation: xfade2 18s 4s infinite;
+}
+
+.landscape3 {
+  animation: xfade3 18s 0s infinite;
+}
+
+.slideshow {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  height: 250px;
+}
+
 .mx-6 {
   margin: 0 4rem;
 }
@@ -75,11 +118,62 @@ img.card-img-top:hover {
   font-weight: 500;
 }
 
+.username:focus {
+  outline: transparent;
+}
+
+/* ========== KEYFRAMES ========== */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes xfade0 {
+  17% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+@keyframes xfade1 {
+  17% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+@keyframes xfade2 {
+  17% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+@keyframes xfade3 {
+  17% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
   }
 }

@@ -3,75 +3,191 @@
     {
       "id": 1,
       "username": "admin",
-      "password": "asd"
+      "password": "asd",
+      "role": "admin"
     },
     {
       "id": 2,
       "username": "kenang",
-      "password": "qwe"
+      "password": "qwe",
+      "role": "member"
     },
     {
       "id": 3,
-      "username": "kening",
-      "password": "qwe"
+      "username": "agus",
+      "password": "qwe",
+      "role": "member"
+    }
+  ],
+  "studios": [
+    {
+      "id": 1,
+      "name": "Studio 1",
+      "totalSeat": 260
+    },
+    {
+      "id": 2,
+      "name": "Studio 2",
+      "totalSeat": 240
+    },
+    {
+      "id": 3,
+      "name": "Studio 3",
+      "totalSeat": 200
     }
   ],
   "movies": [
     {
-      "id": 1,
       "image": "https://media.21cineplex.com/webcontent/gallery/pictures/157422945871583_287x421.jpg",
+      "wideImage": "http://movieden.net/wp-content/uploads/2019/11/jumanji-thenextlevel.jpeg",
       "title": "Jumanji: The Next Level",
       "duration": 121,
       "schedule": [9, 12, 16],
-      "genre": "Action, Adventure, Comedy",
+      "studioId": 2,
+      "trailer": "",
+      "genre": "Action | Adventure | Comedy",
       "producer": "Dwayne Johnson, Matt Tolmach, William Teitler, Hiram Garcia, Dany Garcia",
       "director": "Jake Kasdan",
       "writer": "Jeff Pinkner, Scott Rosenberg",
       "production": "Columbia Pictures",
       "casts": "Dwayne Johnson, Karen Gillan, Jack Black, Kevin Hart, Nick Jonas, Danny DeVito, Danny Glover, Madison Iseman, Alex Wolff, Colin Hanks, Dania Ramirez, Awkwafina",
-      "synopsis": "Dwayne Johnson, Karen Gillan, Jack Black and Kevin Hart returned to Jumanji, the four of whom had to rescue one of their friends. But the game has changed. Players now need to be more courageous in crossing extreme obstacles and returning safely from the most dangerous game in the world."
+      "synopsis": "Dwayne Johnson, Karen Gillan, Jack Black and Kevin Hart returned to Jumanji, the four of whom had to rescue one of their friends. But the game has changed. Players now need to be more courageous in crossing extreme obstacles and returning safely from the most dangerous game in the world.",
+      "id": 1
     },
     {
-      "id": 2,
       "image": "https://media.21cineplex.com/webcontent/gallery/pictures/157356145959988_287x421.jpg",
+      "wideImage": "https://www.dailysia.com/wp-content/uploads/2019/12/film-eggnoid-1280x720.jpg",
       "title": "Eggnoid",
       "duration": 121,
       "schedule": [9, 12, 16],
-      "genre": "Drama, Sci-Fi",
+      "studioId": 1,
+      "trailer": "",
+      "genre": "Drama | Sci-Fi",
       "producer": "Nurita Anandita",
       "director": "Naya Anandita",
       "writer": "Yemima Krisantina, Indriani Agustina",
       "production": "Visinema Pictures",
       "casts": "Morgan Oey, Sheila Dara, Kevin Julio, Luna Maya, Anggika Bolsterli, Reza Nangin, Martin Anugrah, Fatih Unru, Marissa Anita, Reuben Elishama, Keinaya Messi Gusti",
-      "synopsis": "For the past 2 years Ran and Eggy have become a pair of inseparable friends. Ran, who was once lonely and full of sadness, is now a happier person because of Eggy. The feeling that initially only as a friend, slowly turns into love. Unfortunately, Eggy is no ordinary human. But Eggnoid sent from the future. As an Eggnoid, Eggy has rules that cannot be broken. Now, Eggy is threatened to be sent home to the future and parted from Ran forever because one of the big rules that he must not break is falling in love and going out with Ran."
+      "synopsis": "For the past 2 years Ran and Eggy have become a pair of inseparable friends. Ran, who was once lonely and full of sadness, is now a happier person because of Eggy. The feeling that initially only as a friend, slowly turns into love. Unfortunately, Eggy is no ordinary human. But Eggnoid sent from the future. As an Eggnoid, Eggy has rules that cannot be broken. Now, Eggy is threatened to be sent home to the future and parted from Ran forever because one of the big rules that he must not break is falling in love and going out with Ran.",
+      "id": 2
     },
     {
-      "id": 3,
       "image": "https://media.21cineplex.com/webcontent/gallery/pictures/157250534676979_287x421.jpg",
+      "wideImage": "http://movieden.net/wp-content/uploads/2019/08/disney-frozen-2.jpeg",
       "title": "Frozen II",
       "duration": 121,
       "schedule": [9, 12, 16],
-      "genre": "Animation, Adventure, Comedy",
+      "studioId": 2,
+      "trailer": "",
+      "genre": "Animation | Adventure | Comedy",
       "producer": "Peter Del Vecho",
       "director": "Chris Buck, Jennifer Lee",
       "writer": "Allison Schroeder",
       "production": "Walt Disney Pictures",
       "casts": "Kristen Bell, Idina Menzel, Jonathan Groff, Jason Ritter, Evan Rachel Wood, Sterling K. Brown, Rachel Matthews, Josh Gad, Martha Plimpton, Santino Fontana, Alfred Molina",
-      "synopsis": "Anna, Elsa, Kristoff, Olaf and Sven left Arendelle to travel to a strange and miraculous place. They set out to find the origin of Elsa's strength and also to save their kingdom."
+      "synopsis": "Anna, Elsa, Kristoff, Olaf and Sven left Arendelle to travel to a strange and miraculous place. They set out to find the origin of Elsa's strength and also to save their kingdom.",
+      "id": 3
     },
     {
-      "id": 4,
       "image": "https://media.21cineplex.com/webcontent/gallery/pictures/1572858859730_287x421.jpg",
+      "wideImage": "https://screenhubweb.files.wordpress.com/2019/11/ford-v-ferrari-screenhub-entertainment.jpg",
       "title": "Ford v Ferrari",
       "duration": 121,
       "schedule": [9, 12, 16],
-      "genre": "Action, Biography, Drama",
+      "studioId": 3,
+      "trailer": "",
+      "genre": "Action | Biography | Drama",
       "producer": "James Mangold, Jenno Topping, Peter Chernin",
       "director": "James Mangold",
       "writer": "Jez Butterworth, John-Henry Butterworth, Jason Keller",
       "production": "20th Century Fox",
       "casts": "Matt Damon, Christian Bale, Jon Bernthal, Caitriona Balfe, Ray McKinnon, Tracy Letts, Josh Lucas, Noah Jupe, Remo Girone",
-      "synopsis": "2 Academy Award winners, Matt Damon and Christian Bale played a role in FORD v FERRARI, based on the amazing true story of Carroll Shelby (Damon), a visionary car designer from America with Ken Miles (Bale), a fearless British racer. Together they fought against company interference, physical laws, and their own personal problems when building a revolutionary race car for the Ford Motor Company to challenge a race car made by Enzo Ferrari who dominated 24 Hours of Le Mans in France in 1966."
+      "synopsis": "2 Academy Award winners, Matt Damon and Christian Bale played a role in FORD v FERRARI, based on the amazing true story of Carroll Shelby (Damon), a visionary car designer from America with Ken Miles (Bale), a fearless British racer. Together they fought against company interference, physical laws, and their own personal problems when building a revolutionary race car for the Ford Motor Company to challenge a race car made by Enzo Ferrari who dominated 24 Hours of Le Mans in France in 1966.",
+      "id": 4
+    },
+    {
+      "image": "https://media.21cineplex.com/webcontent/gallery/pictures/157251774892294_287x421.jpg",
+      "wideImage": "https://img.eskimotv.net/img/2019/10/KnivesOut.jpg",
+      "title": "Knives Out",
+      "duration": "",
+      "studioId": "1",
+      "trailer": "",
+      "edit_schedule": [],
+      "schedule": [14, 16, 18],
+      "genre": "Comedy | Crime | Drama",
+      "producer": "",
+      "director": "",
+      "writer": "",
+      "production": "",
+      "casts": "",
+      "synopsis": "",
+      "id": 5
     }
-  ]
+  ],
+  "orders": [
+    {
+      "userId": 2,
+      "movieId": 3,
+      "schedule": 12,
+      "totalPrice": 50000,
+      "payment": false,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "movieId": 3,
+      "schedule": 12,
+      "totalPrice": 50000,
+      "payment": false,
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "movieId": 3,
+      "schedule": 12,
+      "totalPrice": 50000,
+      "payment": false,
+      "id": 3
+    }
+  ],
+  "ordersDetails": [
+    {
+      "orderId": 1,
+      "row": 2,
+      "seat": 4,
+      "id": 1
+    },
+    {
+      "orderId": 1,
+      "row": 2,
+      "seat": 5,
+      "id": 2
+    },
+    {
+      "orderId": 2,
+      "row": 2,
+      "seat": 6,
+      "id": 3
+    },
+    {
+      "orderId": 2,
+      "row": 2,
+      "seat": 7,
+      "id": 4
+    },
+    {
+      "orderId": 3,
+      "row": 2,
+      "seat": 8,
+      "id": 5
+    },
+    {
+      "orderId": 3,
+      "row": 2,
+      "seat": 9,
+      "id": 6
+    }
+  ],
+  "transactions": [],
+  "transactions_details": []
 }

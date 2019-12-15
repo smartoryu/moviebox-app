@@ -6,6 +6,19 @@ import Axios from "axios";
 class Jumbo extends Component {
   state = {
     dataMovies: []
+    // ,
+    // image: [],
+    // wideImage: [],
+    // title: [],
+    // duration: [],
+    // schedule: [],
+    // genre: [],
+    // producer: [],
+    // director: [],
+    // writer: [],
+    // production: [],
+    // casts: [],
+    // synopsis: []
   };
 
   async componentDidMount() {
@@ -17,45 +30,51 @@ class Jumbo extends Component {
     }
   }
 
-  render = () => {
+  mapToSingleState() {
+    return this.state.dataMovies.map((val, index) => {
+      return this.setState({});
+    });
+
+    // return (
+    //   this.setState({ image: val.image }),
+    //   this.setState({ wideImage: val.wideImage }),
+    //   this.setState({ title: val.title }),
+    //   this.setState({ duration: val.duration }),
+    //   this.setState({ schedule: val.schedule }),
+    //   this.setState({ genre: val.genre }),
+    //   this.setState({ producer: val.image }),
+    //   this.setState({ director: val.director }),
+    //   this.setState({ writer: val.writer }),
+    //   this.setState({ production: val.production }),
+    //   this.setState({ casts: val.casts }),
+    //   this.setState({ synopsis: val.synopsis })
+    // );
+  }
+
+  renderLandscape = () => {
     return this.state.dataMovies.map((val, index) => {
       return (
-        <div key={index}>
-          <Jumbotron fluid>
-            <Container fluid>
-              <div className="card-deck">
-                <div className="">
-                  <img src={val.image} alt="..." />
-                </div>
-                <div className="card p-3">
-                  <h4 className="card-title">"{val.title}"</h4>
-                  <ul className="card-text jumbotron-text">
-                    <li>Duration: {val.duration} minutes</li>
-                    <li>Genre: {val.genre}</li>
-                    <li>Schedule: {val.schedule}</li>
-                    <li>Producer: {val.producer}</li>
-                    <li>Director: {val.director}</li>
-                    <li>Writer: {val.writer}</li>
-                    <li>Production: {val.production}</li>
-                    <li>
-                      Casts:
-                      <br />
-                      {val.casts}
-                    </li>
-                    <li>
-                      Synopsis:
-                      <br />
-                      {val.synopsis}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Container>
-          </Jumbotron>
+        <div key={index} className={`landscape${index}`}>
+          <div className="movie-container">
+            <img src={val.wideImage} alt="..." />
+          </div>
+          <div className="movie-genre">
+            <p>{val.genre}</p>
+          </div>
+          <div className="movie-title">
+            <p>{val.title}</p>
+          </div>
+          <div className="movie-duration">
+            <p>{val.duration}</p>
+          </div>
         </div>
       );
     });
   };
+
+  render() {
+    return <div className="slideshow">{this.renderLandscape()}</div>;
+  }
 }
 
 export default Jumbo;
