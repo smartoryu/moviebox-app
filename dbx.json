@@ -1,0 +1,143 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "username": "dobleh",
+      "password": "qwe"
+    },
+    {
+      "id": 3,
+      "username": "jamal",
+      "password": "1234"
+    }
+  ],
+  "studios": [
+    {
+      "id": 1,
+      "nama": "Studio 1",
+      "jumlahKursi": 260
+    },
+    {
+      "id": 2,
+      "nama": "Studio 2",
+      "jumlahKursi": 240
+    },
+    {
+      "id": 3,
+      "nama": "Studio 3",
+      "jumlahKursi": 200
+    }
+  ],
+  "movies": [
+    {
+      "title": "Last Christmas",
+      "image": "https://media.21cineplex.com/webcontent/gallery/pictures/157285280844221_287x421.jpg",
+      "sinopsis": "Kate (Emilia Clarke) adalah seorang wanita muda yang mengambil keputusan buruk. Kencan terakhirnya berakhir dengan bencana? Saat diterima di sebuah toko pernak-pernik natal dan berperan sebagai Peri ia bertemu dengan Tom (Henry Golding), Hidupnya berubah lagi. Bagi Kate, sepertinya terlalu bagus untuk menjadi kenyataan.",
+      "sutradara": "Paul Feig",
+      "genre": "Romance",
+      "durasi": "103",
+      "produksi": "RANS ENTERTAINMENT",
+      "jadwal": [12, 14, 16, 20],
+      "trailer": "https://www.youtube.com/embed/z9CEIcmWmtA",
+      "studioId": "2",
+      "id": 2
+    },
+    {
+      "title": "Darah Daging",
+      "image": "https://media.21cineplex.com/webcontent/gallery/pictures/15743293802147_287x421.jpg",
+      "sinopsis": "Seberapa besar pengorbanan yang bisa Anda berikan untuk menyelamatkan Ibu yang telah merawat Anda dari kecil? Pertanyaan tersebut dibuktikan ketiga bersaudara: ARYA (Ario Bayu), RAHMAT (Rangga Nattra) dan FIKRI (Arnold Leonard) dengan melakukan perampokan bank, mereka mengajak sahabat Rahmat dari kecil, SALIM (Donny Alamsyah) ikut serta pula BORNE (Tanta Ginting), Perampokan tersebut tidak berlangsung sesuai rencana dan mengakibatkan SALIM ditangkap dan dihukum.  12 tahun berlalu, SALIM yang dijatuhi hukuman mati kedatangan seorang penulis perempuan, HANNA (Estelle Linden) yang tertarik mengangkat kisah perampokan tersebut ke dalam sebuah novel.",
+      "sutradara": "bebas",
+      "genre": "horoor",
+      "durasi": "123",
+      "produksi": "RANS ENTERTAINMENT",
+      "jadwal": [12, 14, 20],
+      "trailer": "https://www.youtube.com/embed/XG__1TjYjI4",
+      "studioId": "1",
+      "id": 3
+    },
+    {
+      "title": "Jumanji: The Next Level",
+      "image": "https://media.21cineplex.com/webcontent/gallery/pictures/157422945871583_287x421.jpg",
+      "sinopsis": "Dwayne Johnson, Karen Gillan, Jack Black dan Kevin Hart kembali ke Jumanji, keempatnya harus menyelamatkan salah satu teman mereka. Namun permainan telah berubah. Para pemain kini harus lebih berani melintasi rintangan ekstrem dan kembali dengan selamat dari permainan paling berbahaya di dunia.",
+      "sutradara": "bobi",
+      "genre": "adventure",
+      "durasi": "123",
+      "produksi": "RANS ENTERTAINMENT",
+      "jadwal": [12, 14, 16],
+      "trailer": "https://www.youtube.com/embed/rBxcF-r9Ibs",
+      "studioId": "1",
+      "id": 4
+    }
+  ],
+  "orders": [
+    {
+      "userId": 2,
+      "movieId": 3,
+      "jadwal": 12,
+      "totalHarga": 50000,
+      "bayar": false,
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "movieId": 3,
+      "jadwal": 12,
+      "totalHarga": 50000,
+      "bayar": false,
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "movieId": 3,
+      "jadwal": 14,
+      "totalHarga": 50000,
+      "bayar": false,
+      "id": 3
+    }
+  ],
+  "ordersDetails": [
+    {
+      "orderId": 1,
+      "row": 2,
+      "seat": 4,
+      "id": 1
+    },
+    {
+      "orderId": 1,
+      "row": 2,
+      "seat": 5,
+      "id": 2
+    },
+    {
+      "orderId": 2,
+      "row": 2,
+      "seat": 6,
+      "id": 3
+    },
+    {
+      "orderId": 2,
+      "row": 2,
+      "seat": 7,
+      "id": 4
+    },
+    {
+      "orderId": 3,
+      "row": 2,
+      "seat": 8,
+      "id": 5
+    },
+    {
+      "orderId": 3,
+      "row": 2,
+      "seat": 9,
+      "id": 6
+    }
+  ],
+  "transactions": [],
+  "transactionsDetails": []
+}

@@ -42,7 +42,11 @@
       "wideImage": "http://movieden.net/wp-content/uploads/2019/11/jumanji-thenextlevel.jpeg",
       "title": "Jumanji: The Next Level",
       "duration": 121,
-      "schedule": [9, 12, 16],
+      "schedule": [
+        12,
+        14,
+        16
+      ],
       "studioId": 2,
       "trailer": "",
       "genre": "Action | Adventure | Comedy",
@@ -59,8 +63,12 @@
       "wideImage": "https://www.dailysia.com/wp-content/uploads/2019/12/film-eggnoid-1280x720.jpg",
       "title": "Eggnoid",
       "duration": 121,
-      "schedule": [9, 12, 16],
-      "studioId": 1,
+      "schedule": [
+        12,
+        14,
+        16
+      ],
+      "studioId": "2",
       "trailer": "",
       "genre": "Drama | Sci-Fi",
       "producer": "Nurita Anandita",
@@ -76,8 +84,12 @@
       "wideImage": "http://movieden.net/wp-content/uploads/2019/08/disney-frozen-2.jpeg",
       "title": "Frozen II",
       "duration": 121,
-      "schedule": [9, 12, 16],
-      "studioId": 2,
+      "schedule": [
+        12,
+        14,
+        20
+      ],
+      "studioId": "1",
       "trailer": "",
       "genre": "Animation | Adventure | Comedy",
       "producer": "Peter Del Vecho",
@@ -93,8 +105,12 @@
       "wideImage": "https://screenhubweb.files.wordpress.com/2019/11/ford-v-ferrari-screenhub-entertainment.jpg",
       "title": "Ford v Ferrari",
       "duration": 121,
-      "schedule": [9, 12, 16],
-      "studioId": 3,
+      "schedule": [
+        12,
+        14,
+        16
+      ],
+      "studioId": "1",
       "trailer": "",
       "genre": "Action | Biography | Drama",
       "producer": "James Mangold, Jenno Topping, Peter Chernin",
@@ -113,7 +129,11 @@
       "studioId": "1",
       "trailer": "",
       "edit_schedule": [],
-      "schedule": [14, 16, 18],
+      "schedule": [
+        12,
+        14,
+        16
+      ],
       "genre": "Comedy | Crime | Drama",
       "producer": "",
       "director": "",
@@ -134,7 +154,7 @@
       "id": 1
     },
     {
-      "userId": 2,
+      "userId": 3,
       "movieId": 3,
       "schedule": 12,
       "totalPrice": 50000,
@@ -142,12 +162,20 @@
       "id": 2
     },
     {
-      "userId": 3,
+      "userId": 2,
       "movieId": 3,
-      "schedule": 12,
+      "schedule": 14,
       "totalPrice": 50000,
       "payment": false,
       "id": 3
+    },
+    {
+      "userId": 2,
+      "movieId": 2,
+      "schedule": 12,
+      "totalPrice": 150000,
+      "payment": false,
+      "id": 4
     }
   ],
   "ordersDetails": [
@@ -186,6 +214,42 @@
       "row": 2,
       "seat": 9,
       "id": 6
+    },
+    {
+      "orderId": 4,
+      "row": 2,
+      "seat": 7,
+      "id": 7
+    },
+    {
+      "orderId": 4,
+      "row": 2,
+      "seat": 6,
+      "id": 8
+    },
+    {
+      "orderId": 4,
+      "row": 2,
+      "seat": 8,
+      "id": 9
+    },
+    {
+      "orderId": 4,
+      "row": 2,
+      "seat": 9,
+      "id": 10
+    },
+    {
+      "orderId": 4,
+      "row": 2,
+      "seat": 10,
+      "id": 11
+    },
+    {
+      "orderId": 4,
+      "row": 2,
+      "seat": 11,
+      "id": 12
     }
   ],
   "transactions": [],

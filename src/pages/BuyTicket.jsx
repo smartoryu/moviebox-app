@@ -12,8 +12,8 @@ import Loading from "../components/Loading";
 class BuyTicket extends Component {
   state = {
     dataMovie: {},
-    schedule: 12,
-    seats: 0,
+    time: 12,
+    seats: 260,
     rows: 0,
     seatBooked: [],
     seatSelected: [],
@@ -34,13 +34,14 @@ class BuyTicket extends Component {
   onScheduleChange = () => {
     var studioId = this.props.location.state.studioId; // get Studio ID
     var movieId = this.props.location.state.id; // get Movie ID
-    var schedule = this.props.location.state.schedule;
-    // var schedule = this.state.schedule;
 
     Axios.get(`${API_URL}/studios/${studioId}`)
       .then(studio => {
-        Axios.get(`${API_URL}/orders?movieId=${movieId}&schedule=${schedule}`)
+        Axios.get(
+          `${API_URL}/orders?movieId=${movieId}&schedule=${this.state.time}`
+        )
           .then(orders => {
+            // console.log(orders);
             var ordersArr = [];
             orders.data.forEach(order => {
               ordersArr.push(
@@ -53,9 +54,9 @@ class BuyTicket extends Component {
 
             var sumOrdersArr = [];
             Axios.all(ordersArr)
-              .then(sumOrders => {
-                sumOrders.forEach(orders => {
-                  sumOrdersArr.push(...orders.data);
+              .then(resSumOrders => {
+                resSumOrders.forEach(val => {
+                  sumOrdersArr.push(...val.data);
                 });
 
                 this.setState({
@@ -80,13 +81,14 @@ class BuyTicket extends Component {
   };
 
   onScheduleButtonClick = val => {
-    this.setState({ schedule: val, seatSelected: [] });
+    this.setState({ time: val, seatSelected: [] });
     this.onScheduleChange();
   };
 
   renderScheduleButton = () => {
+    // console.log("tes", this.state.dataMovie);
     return this.state.dataMovie.schedule.map((time, index) => {
-      if (this.state.schedule === time) {
+      if (this.state.time === time) {
         return (
           <button key={index} disabled className="btn btn-primary mx-2">
             {time}.00
@@ -111,13 +113,13 @@ class BuyTicket extends Component {
   /                                                              /
   ==============================================================*/
   onSelectSeat = (row, seat) => {
-    var { seatSelected } = this.state;
+    var seatSelected = this.state.seatSelected;
     seatSelected.push({ row, seat });
-    this.setState({ seatSelected });
+    this.setState({ seatSelected: seatSelected });
   };
 
   onCancelSeat = (row, seat) => {
-    var { seatSelected } = this.state;
+    var seatSelected = this.state.seatSelected;
     var rows = row;
     var seats = seat;
     var seatSelectedNew = [];
@@ -130,8 +132,10 @@ class BuyTicket extends Component {
   };
 
   onBookSeat = () => {
-    var { userId } = this.props;
-    var { movieId, seatSelected, schedule } = this.state;
+    var userId = this.props.userId;
+    var movieId = this.state.dataMovie.id;
+    var seatSelected = this.state.seatSelected;
+    var schedule = this.state.time;
     var totalPrice = seatSelected.length * 25000;
     var payment = false;
     var dataOrders = {
@@ -145,9 +149,9 @@ class BuyTicket extends Component {
     // post dataOrders baru ke db.json sebagai orders
     Axios.post(`${API_URL}/orders`, dataOrders)
       .then(res => {
+        // console.log("ordersDetails", dataOrdersDetails);
         var dataOrdersDetails = [];
         seatSelected.forEach(val => {
-          console.log("ordersDetails", dataOrdersDetails);
           // push data selected seat(s) ke ordersDetails
           dataOrdersDetails.push({
             orderId: res.data.id,
@@ -158,7 +162,7 @@ class BuyTicket extends Component {
 
         var arrDataOrdersDetails = [];
         dataOrdersDetails.forEach(val => {
-          console.log("arrOrdersDetails", arrDataOrdersDetails);
+          // console.log("arrOrdersDetails", arrDataOrdersDetails);
           // push array ordersDetails (berisi data selected seats) ke db.json
           arrDataOrdersDetails.push(
             Axios.post(`${API_URL}/ordersDetails`, val)
@@ -190,8 +194,9 @@ class BuyTicket extends Component {
 
     //===== penanda posisi kursi diganti 3 untuk booked seat
     for (let i = 0; i < this.state.seatBooked.length; i++) {
-      rows[this.state.seatBooked[i].row][this.state.seatBooked[i]] = 3;
+      rows[this.state.seatBooked[i].row][this.state.seatBooked[i].seat] = 3;
     }
+    // console.log(this.state.seatBooked);
 
     //===== penanda posisi kursi diganti 2 untuk selected seat
     for (let j = 0; j < this.state.seatSelected.length; j++) {
@@ -201,7 +206,7 @@ class BuyTicket extends Component {
     var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var seatmap = rows.map((row, rowIndex) => {
       return (
-        <div key={rowIndex}>
+        <div key={rowIndex} style={{ textAlign: "center" }}>
           {row.map((seat, seatIndex) => {
             if (seat === 3) {
               // styling untuk booked seat
@@ -210,7 +215,9 @@ class BuyTicket extends Component {
                   key={seatIndex}
                   disabled
                   className="btn btn-danger rounded mt-2 mr-2 text-align-center"
-                ></button>
+                >
+                  {alphabet[rowIndex] + (seatIndex + 1)}
+                </button>
               );
             } else if (seat === 2) {
               // styling untuk selected seat

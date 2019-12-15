@@ -33,6 +33,19 @@
   cursor: pointer;
 }
 
+.btn {
+  text-align: center;
+  /* line-height: normal; */
+}
+
+.btn-danger,
+.btn-secondary,
+.btn-warning {
+  width: 45px !important;
+  height: 35px !important;
+  /* text-align: center !important; */
+}
+
 .card {
   padding: 0;
   border: 1px transparent;
