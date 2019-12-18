@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LogoutSuccessAction } from "../redux/actions";
 import Swal from "sweetalert2";
-// import { FaOpencart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import {
   Collapse,
   Navbar,
@@ -21,7 +21,8 @@ import {
 class Header extends Component {
   state = {
     setIsOpen: false,
-    onMouseEnter: false
+    onMouseEnter: false,
+    redirectHome: false
   };
 
   userLogout = () => {
@@ -65,6 +66,7 @@ class Header extends Component {
               .then(() => {
                 localStorage.removeItem("user_login");
                 this.props.LogoutSuccessAction();
+                window.location.reload(false);
               })
               .then(() => {
                 return <Redirect to={"/"} />;
@@ -83,22 +85,8 @@ class Header extends Component {
           <NavbarBrand href="/">moviebox</NavbarBrand>
           <NavbarToggler onClick={() => this.setState({ setIsOpen: true })} />
           <Collapse isOpen={this.state.setIsOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {Username && Role === "admin" ? (
-                <NavItem>
-                  <NavLink href="/admin/">Admin</NavLink>
-                </NavItem>
-              ) : null}
-              <NavItem>
-                <NavLink href="">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/smartoryu/moviebox-app">
-                  GitHub
-                </NavLink>
-              </NavItem>
-
-              {Username === "" ? (
+            {Username === "" ? (
+              <Nav className="ml-auto" navbar>
                 <UncontrolledDropdown
                   isOpen={this.state.onMouseEnter}
                   nav
@@ -116,11 +104,18 @@ class Header extends Component {
                     right
                   >
                     <DropdownItem href={"/login"}>Login</DropdownItem>
-                    <DropdownItem disabled>Register</DropdownItem>
+                    <DropdownItem href={"/register"}>Register</DropdownItem>
                     <DropdownItem divider />
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              ) : (
+                <NavItem>
+                  <NavLink href="https://github.com/smartoryu/moviebox-app">
+                    GitHub
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            ) : Role === "admin" ? (
+              <Nav className="ml-auto" navbar>
                 <UncontrolledDropdown
                   isOpen={this.state.onMouseEnter}
                   nav
@@ -131,23 +126,74 @@ class Header extends Component {
                     nav
                     caret
                   >
-                    {/* siapa yang sedang login */}
-                    {Username}
+                    {Username} {/* siapa yang sedang login */}
                   </DropdownToggle>
                   <DropdownMenu
                     onMouseLeave={() => this.setState({ onMouseEnter: false })}
                     right
                   >
-                    <DropdownItem disabled>Option 1</DropdownItem>
-                    <DropdownItem disabled>Option 2</DropdownItem>
+                    <DropdownItem href="/admin/">Manage Movies</DropdownItem>
+                    <DropdownItem href="/studio">Manage Studios</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem onClick={this.userLogout}>
                       Logout
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              )}
-            </Nav>
+                <NavItem>
+                  <NavLink href="https://github.com/smartoryu/moviebox-app">
+                    GitHub
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            ) : (
+              <Nav className="ml-auto" navbar>
+                {/* <NavItem>
+                  <NavLink href="">History</NavLink>
+                </NavItem> */}
+                <NavItem>
+                  <NavLink href="/cart">
+                    {this.props.CartCount}
+                    <FaShoppingCart
+                      className="ml-1"
+                      style={{ fontSize: "25px", cursor: "pointer" }}
+                    />
+                  </NavLink>
+                </NavItem>
+                <UncontrolledDropdown
+                  isOpen={this.state.onMouseEnter}
+                  nav
+                  inNavbar
+                >
+                  <DropdownToggle
+                    onMouseEnter={() => this.setState({ onMouseEnter: true })}
+                    nav
+                    caret
+                  >
+                    {Username} {/* siapa yang sedang login */}
+                  </DropdownToggle>
+                  <DropdownMenu
+                    onMouseLeave={() => this.setState({ onMouseEnter: false })}
+                    right
+                  >
+                    <DropdownItem href="/history">History</DropdownItem>
+                    <DropdownItem href="/change_password/">
+                      Change Password
+                    </DropdownItem>
+                    <DropdownItem disabled>You're going nowhere</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={this.userLogout}>
+                      Logout
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                <NavItem>
+                  <NavLink href="https://github.com/smartoryu/moviebox-app">
+                    GitHub
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            )}
           </Collapse>
         </Navbar>
       </div>
@@ -158,7 +204,8 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     Username: state.Auth.username,
-    Role: state.Auth.role
+    Role: state.Auth.role,
+    CartCount: state.Auth.cartCount
   };
 };
 

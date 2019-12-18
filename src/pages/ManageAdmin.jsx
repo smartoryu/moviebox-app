@@ -13,9 +13,10 @@ import { API_URL } from "../support/API_URL";
 
 const MySwal = withReactContent(Swal);
 
-class Admin extends Component {
+class ManageAdmin extends Component {
   state = {
     dataMovies: [],
+    dataStudios: [],
     readmoreSelected: -1,
     modalAdd: false,
     modalEdit: false,
@@ -27,10 +28,18 @@ class Admin extends Component {
 
   async componentDidMount() {
     try {
-      var { data } = await Axios.get(`${API_URL}/movies`);
-      this.setState({ dataMovies: data });
-    } catch (err) {
-      console.log(err);
+      var movies = await Axios.get(`${API_URL}/movies`);
+      console.log("movies", movies);
+      try {
+        var studios = await Axios.get(`${API_URL}/studios`);
+        console.log("studios", studios);
+      } catch (errStudios) {
+        console.log(errStudios);
+      }
+
+      this.setState({ dataMovies: movies.data, dataStudios: studios.data });
+    } catch (errMovies) {
+      console.log(errMovies);
     }
   }
 
@@ -680,4 +689,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Admin);
+export default connect(mapStateToProps)(ManageAdmin);

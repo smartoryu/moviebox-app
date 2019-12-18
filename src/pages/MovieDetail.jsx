@@ -29,7 +29,7 @@ class MovieDetail extends Component {
   }
 
   onBuyTicket = () => {
-    this.props.AuthLogin
+    this.props.AuthLogin && this.props.AuthRole === "member"
       ? this.setState({ authBuyTicket: true })
       : this.setState({ isLogin: true });
   };
@@ -50,7 +50,7 @@ class MovieDetail extends Component {
         centered
         toggle={() => this.setState({ isLogin: false })}
       >
-        <ModalBody>You need to login first.</ModalBody>
+        <ModalBody>You need to login as member first.</ModalBody>
         <ModalFooter>
           <button
             onClick={() => this.setState({ toLoginPage: true })}
@@ -127,7 +127,8 @@ class MovieDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    AuthLogin: state.Auth.login
+    AuthLogin: state.Auth.login,
+    AuthRole: state.Auth.role
   };
 };
 

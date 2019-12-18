@@ -4,10 +4,12 @@ import { Redirect } from "react-router-dom";
 import Axios from "axios";
 import Numeral from "numeral";
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
+import moment from "moment";
 
 import { API_URL } from "../support/API_URL";
 
 import Loading from "../components/Loading";
+import NotFound from "./NotFound";
 
 class BuyTicket extends Component {
   state = {
@@ -138,21 +140,33 @@ class BuyTicket extends Component {
     var schedule = this.state.time;
     var totalPrice = seatSelected.length * 25000;
     var payment = false;
+    var currentDate = moment().format("DD/MM/YYYY");
     var dataOrders = {
       userId,
       movieId,
       schedule,
       totalPrice,
-      payment
+      payment,
+      date: currentDate
     };
 
-    // post dataOrders baru ke db.json sebagai orders
+    ////// post dataOrders baru ke db.json sebagai orders
     Axios.post(`${API_URL}/orders`, dataOrders)
       .then(res => {
+        ////// put jumlah cart ke redux
+        Axios.get(`${API_URL}/orders?userId=${res.data.id}`)
+          .then(resOrders => {
+            this.props.AddCartAction(resOrders.data.length);
+            window.location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
         // console.log("ordersDetails", dataOrdersDetails);
         var dataOrdersDetails = [];
         seatSelected.forEach(val => {
-          // push data selected seat(s) ke ordersDetails
+          ////// push data selected seat(s) ke ordersDetails
           dataOrdersDetails.push({
             orderId: res.data.id,
             row: val.row,
@@ -163,13 +177,13 @@ class BuyTicket extends Component {
         var arrDataOrdersDetails = [];
         dataOrdersDetails.forEach(val => {
           // console.log("arrOrdersDetails", arrDataOrdersDetails);
-          // push array ordersDetails (berisi data selected seats) ke db.json
+          ////// push array ordersDetails (berisi data selected seats) ke db.json
           arrDataOrdersDetails.push(
             Axios.post(`${API_URL}/ordersDetails`, val)
           );
         });
 
-        // did ALL the Axios lalu memunculkan modal cart
+        ////// did ALL the Axios lalu memunculkan modal cart
         Axios.all(arrDataOrdersDetails)
           .then(res => {
             this.setState({ openModalCart: true });
@@ -270,58 +284,60 @@ class BuyTicket extends Component {
   };
 
   render() {
-    if (this.props.location.state && this.props.AuthLogin) {
+    if (this.props.location.state || this.props.AuthRole === "member") {
       if (this.state.redirectHome) {
         return <Redirect to={"/"} />;
       }
+      return (
+        <center>
+          <Modal isOpen={this.state.openModalCart}>
+            <ModalBody>Item added to cart!</ModalBody>
+            <ModalFooter>
+              <button
+                onClick={() => this.setState({ redirectHome: true })}
+                className="btn btn-dark"
+              >
+                Ok
+              </button>
+            </ModalFooter>
+          </Modal>
+
+          {/*==================== CONTENT ====================*/}
+
+          <div className="mt-1">
+            {this.state.dataMovie.title}
+            {this.state.loading ? <Loading /> : this.renderScheduleButton()}
+          </div>
+
+          <div className="mt-1">
+            {this.state.seatSelected.length ? (
+              <button onClick={this.onBookSeat} className="btn btn-success">
+                Order Now!
+              </button>
+            ) : (
+              <button disabled className="btn btn-success">
+                Choose First!
+              </button>
+            )}
+          </div>
+
+          {this.renderPriceQty()}
+          <div className="d-flex justify-content-center mt-4 mx-auto">
+            <div>{this.state.loading ? <Loading /> : this.renderSeatmap()}</div>
+          </div>
+        </center>
+      );
+    } else {
+      return <NotFound />;
     }
-
-    return (
-      <center>
-        <Modal isOpen={this.state.openModalCart}>
-          <ModalBody>Item added to cart!</ModalBody>
-          <ModalFooter>
-            <button
-              onClick={() => this.setState({ redirectHome: true })}
-              className="btn btn-dark"
-            >
-              Ok
-            </button>
-          </ModalFooter>
-        </Modal>
-
-        {/*==================== CONTENT ====================*/}
-
-        <div className="mt-1">
-          {this.state.dataMovie.title}
-          {this.state.loading ? <Loading /> : this.renderScheduleButton()}
-        </div>
-
-        <div className="mt-1">
-          {this.state.seatSelected.length ? (
-            <button onClick={this.onBookSeat} className="btn btn-success">
-              Order Now!
-            </button>
-          ) : (
-            <button disabled className="btn btn-success">
-              Choose First!
-            </button>
-          )}
-        </div>
-
-        {this.renderPriceQty()}
-        <div className="d-flex justify-content-center mt-4 mx-auto">
-          <div>{this.state.loading ? <Loading /> : this.renderSeatmap()}</div>
-        </div>
-      </center>
-    );
   }
 }
 
 const mapStateToProps = state => {
   return {
     AuthLogin: state.Auth.login,
-    userId: state.Auth.id
+    userId: state.Auth.id,
+    AuthRole: state.Auth.role
   };
 };
 

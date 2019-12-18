@@ -39,3 +39,17 @@ export const login_error = () => {
     dispatch({ type: "LOGIN_ERROR", payload: "" });
   };
 };
+
+export const AddCartAction = count => {
+  return {
+    type: "ADD_CART",
+    payload: count
+  };
+};
+
+export const ResetPassAction = newPass => {
+  return {
+    type: "RESET_PASS",
+    payload: newPass
+  };
+};

@@ -37,7 +37,7 @@ class Login extends Component {
   render() {
     console.log(this.props.AuthLogin);
     if (this.props.AuthLogin) {
-      return <Redirect to="/" />;
+      return <Redirect to="" />;
     }
     return (
       <div>
@@ -107,14 +107,14 @@ class Login extends Component {
   }
 }
 
-const MapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     AuthLogin: state.Auth.login,
     Auth: state.Auth
   };
 };
 
-export default connect(MapStateToProps, {
+export default connect(mapStateToProps, {
   LoginSuccessAction,
   LoginThunk,
   login_error
